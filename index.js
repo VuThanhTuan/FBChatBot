@@ -1,7 +1,6 @@
 var http = require('http');
 var express = require('express');
 var app = express();
-var server = http.createServer(app);
 app.get('/', function (req, res){
   res.send('hello world');
 });
@@ -31,8 +30,6 @@ bot.on('message', function(userId, message){
 });
 
 //Make Express listening
-app.set('port', process.env.PORT || 3000);
-app.set('ip', process.env.IP || "127.0.0.1");
-server.listen(app.get('port'), app.get('ip'), function() {
-  console.log("Express server listening at %s:%d ", app.get('ip'), app.get('port'));
+app.listen(process.env.PORT || 3000, function(){
+    console.log('Your node js server is running');
 });

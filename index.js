@@ -1,5 +1,7 @@
+var http = require('http');
 var express = require('express');
 var app = express();
+var server = http.createServer(app);
 var FBBotFramework = require('fb-bot-framework');
 // Initialize
 var bot = new FBBotFramework({
@@ -28,4 +30,8 @@ app.get('/', function (req, res){
   res.send('hello world');
 });
 //Make Express listening
-app.listen(3000);
+app.set('port', process.env.PORT || 3000);
+app.set('ip', process.env.IP || "127.0.0.1");
+server.listen(app.get('port'), app.get('ip'), function() {
+  console.log("Express server listening at %s:%d ", app.get('ip'), app.get('port'));
+});

@@ -2,6 +2,9 @@ var http = require('http');
 var express = require('express');
 var app = express();
 var server = http.createServer(app);
+app.get('/', function (req, res){
+  res.send('hello world');
+});
 var FBBotFramework = require('fb-bot-framework');
 // Initialize
 var bot = new FBBotFramework({
@@ -26,9 +29,7 @@ bot.on('message', function(userId, message){
   }
 
 });
-app.get('/', function (req, res){
-  res.send('hello world');
-});
+
 //Make Express listening
 app.set('port', process.env.PORT || 3000);
 app.set('ip', process.env.IP || "127.0.0.1");
